@@ -1,0 +1,55 @@
+{% extends 'main/base.html'%} {% block content %}
+
+<h1>Employee_List</h1>
+
+<table class="table table-borderless">
+  <thead class="border-bottom font-weight-bold">
+    <tr>
+      <td>Full Name</td>
+      <td>Mobile</td>
+      <td>Position</td>
+      <td>Country</td>
+      <td>City</td>
+      <td>
+        <a href="{% url 'insert' %}" class="btn btn-outline-sucess">
+          <i class="fas fa-plus"></i>Add New
+        </a>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for emp in employees_list %}
+    <tr>
+      <td>
+        {{ emp.fullname }}
+      </td>
+      <td>
+        {{ emp.mobile }}
+      </td>
+      <td>
+        {{ emp.position }}
+      </td>
+      <td>
+        {{ emp.country }}
+      </td>
+      <td>
+        {{ emp.city}}
+      </td>
+      <td>
+        <a href="{% url 'update' emp.id %}" class="btn text-secondary px-0">
+          <i class="far fa-edit.fa-lg"></i>update
+        </a>
+        <form action="{% url 'delete' emp.id %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn">
+            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+            delete
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

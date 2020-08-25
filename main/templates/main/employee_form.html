@@ -1,0 +1,25 @@
+{% extends 'main/base.html'%} {% load crispy_forms_tags %} {% block content %}
+
+<form action="" method="post" autocomplete="off">
+  {% csrf_token %} {{ form.fullname|as_crispy_field }}<br />
+  {{form.mobile|as_crispy_field }} <br />{{form.empcode|as_crispy_field }}
+  <br />
+  <div class="row">
+    <div class="col-md-4">
+      {{form.country |as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+      {{form.city|as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+      {{form.position|as_crispy_field }}
+    </div>
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+    submit
+  </button>
+</form>
+<br />
+{% endblock content%}
